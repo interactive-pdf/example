@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="turn.min.js"></script>
+
+<style type="text/css">
+body{
+	background:rgb(255, 255, 255);
+}
+#magazine{
+	width:1440px;
+	height:810px;
+}
+#magazine .turn-page{
+	background-color:rgb(255, 255, 255);
+	background-size:100% 100%;
+}
+</style>
+</head>
+<body>
+<div style="position: relative;">
+	<div id="magazine" style="margin:auto">
+		<div style="background-image:url('https://cdn.discordapp.com/attachments/1007134013221240843/1007191804531187783/1.png');"></div>
+		<div style="background-image:url('https://cdn.discordapp.com/attachments/1007134013221240843/1007191804933849138/2.png');"></div>
+		<div style="background-image:url('https://cdn.discordapp.com/attachments/1007134013221240843/1007191805281964082/3.png');"></div>
+		<div style="background-image:url('https://cdn.discordapp.com/attachments/1007134013221240843/1007191805663649872/4.png');"></div>
+		<div style="background-image:url('https://cdn.discordapp.com/attachments/1007134013221240843/1007191806036946944/5.png');"></div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+	$(window).ready(function() {
+		$('#magazine').turn({
+							display: 'single',
+							acceleration: true,
+							gradients: !$.isTouch,
+							elevation:50,
+							autoCenter:true,
+							when: {
+								turned: function(e, page) {
+										var audio = new Audio('assets/sound1.mp3');
+										audio.play();
+									
+									// console.log('Current view: ', $(this).turn('view'));
+								}
+							}
+						});
+	});
+	
+	
+	$(window).bind('keydown', function(e){
+		
+		if (e.keyCode==37){
+			$('#magazine').turn('previous')
+		}else if (e.keyCode==39){
+			$('#magazine').turn('next');			
+		}
+			
+	});
+
+</script>
+
+
+</body>
+</html>
